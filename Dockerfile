@@ -51,7 +51,7 @@ RUN /usr/bin/apt-get update -q
 # install more packages
 RUN /usr/bin/apt-get install -yqq php7.2-bz2 php7.2-cli php7.2-common php7.2-curl php7.2-dev php7.2-fpm php7.2-gd \
     php7.2-imap php7.2-intl php7.2-json php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-phalcon php7.2-readline php7.2-xml php7.2-zip \
-    php-apcu php-geoip php-mailparse php-memcached php-pear php-xdebug nodejs yarn
+    php-apcu php-geoip php-mailparse php-memcached php-pear php-xdebug nodejs yarn pngquant libpng-dev
 
 # clean the package list
 RUN /usr/bin/apt-get clean
