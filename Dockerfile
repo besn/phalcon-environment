@@ -27,7 +27,7 @@ RUN /usr/bin/apt-get -yqq install locales && \
 ENV LC_ALL C.UTF-8
 
 # install some packages we need
-RUN /usr/bin/apt-get install -yqq openssh-client apt-transport-https software-properties-common lsb-release ca-certificates gpg
+RUN /usr/bin/apt-get install -yqq openssh-client curl apt-transport-https software-properties-common lsb-release ca-certificates gpg
 
 # setup deb.sury.org (php7+) apt source
 RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://packages.sury.org/php/apt.gpg 2>/dev/null | /usr/bin/apt-key add -"]
@@ -49,7 +49,7 @@ RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://dl.yarnpkg.com/debian/
 RUN /usr/bin/apt-get update -q
 
 # install more packages
-RUN /usr/bin/apt-get install -yqq rsync git wget curl supervisor nginx memcached nodejs yarn pngquant libpng-dev php7.2-bz2 php7.2-cli php7.2-common php7.2-curl php7.2-dev \
+RUN /usr/bin/apt-get install -yqq rsync git wget supervisor nginx memcached nodejs yarn pngquant libpng-dev php7.2-bz2 php7.2-cli php7.2-common php7.2-curl php7.2-dev \
     php7.2-fpm php7.2-gd php7.2-imap php7.2-intl php7.2-json php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-phalcon php7.2-readline \
     php7.2-xml php7.2-zip php-apcu php-geoip php-mailparse php-memcached php-pear php-xdebug
 
