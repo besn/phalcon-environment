@@ -27,23 +27,23 @@ RUN /usr/bin/apt-get -yqq install locales && \
 ENV LC_ALL C.UTF-8
 
 # install some packages we need
-RUN /usr/bin/apt-get install -yqq openssh-client rsync apt-transport-https lsb-release ca-certificates curl gpg supervisor nginx memcached
+RUN /usr/bin/apt-get install -yqq openssh-client rsync apt-transport-https software-properties-common lsb-release ca-certificates curl gpg supervisor nginx memcached
 
 # setup deb.sury.org (php7+) apt source
-RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://packages.sury.org/php/apt.gpg 2>/dev/null | apt-key add -"]
-RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://packages.sury.org/php/apt.gpg 2>/dev/null | /usr/bin/apt-key add -"]
+RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://packages.sury.org/php/ $(lsb_release -sc) main"
 
 # setup phalcon-php apt source
-RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://packagecloud.io/phalcon/stable/gpgkey 2>/dev/null | apt-key add -"]
-RUN echo "deb https://packagecloud.io/phalcon/stable/debian/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/phalcon.list
+RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://packagecloud.io/phalcon/stable/gpgkey 2>/dev/null | /usr/bin/apt-key add -"]
+RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://packagecloud.io/phalcon/stable/debian/ $(lsb_release -sc) main"
 
 # setup nodesource (nodejs) apt source
-RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://deb.nodesource.com/gpgkey/nodesource.gpg.key 2>/dev/null | apt-key add -"]
-RUN echo "deb https://deb.nodesource.com/node_9.x $(lsb_release -sc) main" > /etc/apt/sources.list.d/nodesource.list
+RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://deb.nodesource.com/gpgkey/nodesource.gpg.key 2>/dev/null | /usr/bin/apt-key add -"]
+RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://deb.nodesource.com/node_9.x $(lsb_release -sc) main"
 
 # setup yarnpkg apt source
-RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://dl.yarnpkg.com/debian/pubkey.gpg 2>/dev/null | apt-key add -"]
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarnpkg.list
+RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://dl.yarnpkg.com/debian/pubkey.gpg 2>/dev/null | /usr/bin/apt-key add -"]
+RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main"
 
 # update the package list
 RUN /usr/bin/apt-get update -q
