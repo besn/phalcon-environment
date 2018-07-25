@@ -27,7 +27,7 @@ RUN /usr/bin/apt-get -yqq install locales && \
 ENV LC_ALL C.UTF-8
 
 # install some packages we need
-RUN /usr/bin/apt-get install -yqq openssh-client rsync apt-transport-https software-properties-common lsb-release ca-certificates curl gpg supervisor nginx memcached
+RUN /usr/bin/apt-get install -yqq openssh-client rsync git apt-transport-https software-properties-common lsb-release ca-certificates curl gpg supervisor nginx memcached
 
 # setup deb.sury.org (php7+) apt source
 RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://packages.sury.org/php/apt.gpg 2>/dev/null | /usr/bin/apt-key add -"]
