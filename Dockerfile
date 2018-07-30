@@ -21,9 +21,13 @@ RUN /usr/bin/apt-get upgrade -yqq
 
 # install and setup locales
 RUN /usr/bin/apt-get -yqq install locales && \
+    /bin/sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && \
     /usr/sbin/dpkg-reconfigure locales && \
-    /usr/sbin/locale-gen en_US.UTF-8 && \
+    /usr/sbin/locale-gen && \
     /usr/sbin/update-locale LANG=en_US.UTF-8
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 # install some packages we need
