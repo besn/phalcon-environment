@@ -22,8 +22,8 @@ RUN /usr/bin/apt-get upgrade -yqq
 # install and setup locales
 RUN /usr/bin/apt-get -yqq install locales && \
     /usr/sbin/dpkg-reconfigure locales && \
-    /usr/sbin/locale-gen C.UTF-8 && \
-    /usr/sbin/update-locale LANG=C.UTF-8
+    /usr/sbin/locale-gen en_US.UTF-8 && \
+    /usr/sbin/update-locale LANG=en_US.UTF-8
 ENV LC_ALL C.UTF-8
 
 # install some packages we need
