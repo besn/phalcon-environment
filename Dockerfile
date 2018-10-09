@@ -31,7 +31,7 @@ ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 # install some packages we need
-RUN /usr/bin/apt-get install -yqq openssh-client curl apt-transport-https software-properties-common lsb-release ca-certificates gnupg
+RUN /usr/bin/apt-get install -yqq openssh-client curl apt-transport-https software-properties-common lsb-release ca-certificates gnupg pwgen
 
 # setup deb.sury.org (php7+) apt source
 RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://packages.sury.org/php/apt.gpg 2>/dev/null | /usr/bin/apt-key add -"]
