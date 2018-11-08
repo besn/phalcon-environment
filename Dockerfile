@@ -43,7 +43,7 @@ RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://packagecloud.io/phalco
 
 # setup nodesource (nodejs) apt source
 RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://deb.nodesource.com/gpgkey/nodesource.gpg.key 2>/dev/null | /usr/bin/apt-key add -"]
-RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://deb.nodesource.com/node_9.x $(lsb_release -sc) main"
+RUN /usr/bin/add-apt-repository "deb [arch=amd64] https://deb.nodesource.com/node_10.x $(lsb_release -sc) main"
 
 # setup yarnpkg apt source
 RUN ["/bin/bash", "-c", "set -o pipefail && /usr/bin/curl -L https://dl.yarnpkg.com/debian/pubkey.gpg 2>/dev/null | /usr/bin/apt-key add -"]
